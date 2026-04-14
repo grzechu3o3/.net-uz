@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Zadanie_06
@@ -20,7 +15,8 @@ namespace Zadanie_06
         private string recipient_email;
         private string topic;
         private string content;
-        //private file attachment;
+        private List<string> attachmentPaths = new List<string>();
+
         public Form1()
         {
             InitializeComponent();
@@ -51,17 +47,24 @@ namespace Zadanie_06
             this.content = richTextBox2.Text;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private async void button4_Click(object sender, EventArgs e)
         {
             string uz_pattern = @"^\d+@stud\.uz\.zgora\.pl$";
             if (!Regex.IsMatch(textBox1.Text, uz_pattern))
             {
-                MessageBox.Show("Niepoprawny adres e-mail. Aplikacja obsługuje maile studenckie, np: 111111@stud.uz.zgora.pl");
+                MessageBox.Show("Niepoprawny adres e-mail. Aplikacja obsługuje maile studenckie, np: 111111@stud.uz.zgora.pl", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } else if (string.IsNullOrEmpty(recipient_email) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Nie podano hasła lub odbiorcy wiadomości", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             } else
             {
                 MailMessage message = new MailMessage(sender_email, recipient_email);
                 message.Subject = topic;
                 message.Body = content;
+                foreach (var path in attachmentPaths)
+                {
+                    message.Attachments.Add(new Attachment(path));
+                }
 
                 SmtpClient client = new SmtpClient("poczta.stud.uz.zgora.pl");
                 client.Port = 587; 
@@ -70,13 +73,46 @@ namespace Zadanie_06
 
                 try
                 {
-                    client.Send(message);
+                    await client.SendMailAsync(message);
+                    MessageBox.Show("Mail wysłany", "Sukces!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 } catch (Exception ex)
                 {
                     Console.Error.WriteLine(ex.Message);
+                    MessageBox.Show(ex.ToString(), "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                } finally
+                {
+                    client.Dispose();
                 }
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Title = "Wybierz załącznik";
+
+            if(fileDialog.ShowDialog() == DialogResult.OK)
+            { 
+                attachmentPaths.Add(fileDialog.FileName);
+                attachment_list.Items.Add(Path.GetFileName(fileDialog.FileName));
+            }
+        }
+
+        private void attachment_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void attachment_list_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = attachment_list.SelectedIndex;
+            if (index >= 0)
+            {
+                attachmentPaths.RemoveAt(index);
+                attachment_list.Items.RemoveAt(index);
+            }
         }
     }
 }

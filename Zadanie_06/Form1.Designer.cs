@@ -40,13 +40,15 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.attachment_list = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(223, 64);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(198, 31);
+            this.textBox1.Size = new System.Drawing.Size(306, 31);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -73,7 +75,7 @@
             this.textBox2.Location = new System.Drawing.Point(223, 110);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(198, 31);
+            this.textBox2.Size = new System.Drawing.Size(306, 31);
             this.textBox2.TabIndex = 3;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -81,7 +83,7 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(223, 158);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(198, 31);
+            this.textBox3.Size = new System.Drawing.Size(306, 31);
             this.textBox3.TabIndex = 4;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
@@ -96,16 +98,16 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(571, 110);
+            this.textBox4.Location = new System.Drawing.Point(655, 110);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(708, 31);
+            this.textBox4.Size = new System.Drawing.Size(662, 31);
             this.textBox4.TabIndex = 6;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(495, 113);
+            this.label4.Location = new System.Drawing.Point(577, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 25);
             this.label4.TabIndex = 7;
@@ -115,7 +117,7 @@
             // 
             this.richTextBox2.Location = new System.Drawing.Point(63, 205);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(1216, 391);
+            this.richTextBox2.Size = new System.Drawing.Size(873, 391);
             this.richTextBox2.TabIndex = 9;
             this.richTextBox2.Text = "";
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
@@ -126,28 +128,52 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1166, 602);
+            this.button1.Location = new System.Drawing.Point(1166, 204);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 57);
+            this.button1.Size = new System.Drawing.Size(151, 57);
             this.button1.TabIndex = 10;
             this.button1.Text = "Załącz";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(253, 645);
+            this.button4.Location = new System.Drawing.Point(155, 637);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(887, 111);
+            this.button4.Size = new System.Drawing.Size(1083, 111);
             this.button4.TabIndex = 13;
             this.button4.Text = "Wyślij";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // attachment_list
+            // 
+            this.attachment_list.FormattingEnabled = true;
+            this.attachment_list.HorizontalScrollbar = true;
+            this.attachment_list.ItemHeight = 25;
+            this.attachment_list.Location = new System.Drawing.Point(960, 267);
+            this.attachment_list.Name = "attachment_list";
+            this.attachment_list.Size = new System.Drawing.Size(381, 329);
+            this.attachment_list.TabIndex = 14;
+            this.attachment_list.SelectedIndexChanged += new System.EventHandler(this.attachment_list_SelectedIndexChanged);
+            this.attachment_list.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.attachment_list_MouseDoubleClick);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(955, 228);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(156, 25);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Załączone pliki";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1404, 802);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.attachment_list);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.richTextBox2);
@@ -180,6 +206,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ListBox attachment_list;
+        private System.Windows.Forms.Label label5;
     }
 }
 
