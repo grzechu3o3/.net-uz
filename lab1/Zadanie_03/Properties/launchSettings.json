@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Zadanie_03": {
+      "commandName": "Project",
+      "commandLineArgs": "testowy testowy2"
+    }
+  }
+}

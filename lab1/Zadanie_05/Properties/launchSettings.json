@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Zadanie_05": {
+      "commandName": "Project",
+      "commandLineArgs": "kot pies <fileIn.txt >fileOut.txt"
+    }
+  }
+}
