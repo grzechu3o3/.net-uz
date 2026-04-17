@@ -35,16 +35,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.lstPeople = new System.Windows.Forms.ListBox();
-            this.txtId = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
 
-            // 
-            // txtId
-            // 
-            this.txtId.Location = new System.Drawing.Point(63, 37);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(100, 20);
-            this.txtId.TabIndex = 0;
             // 
             // txtName
             // 
@@ -123,7 +115,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtSurname;
         private System.Windows.Forms.TextBox txtPhone;
