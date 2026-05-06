@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Zadanie04_1_1/Zadanie04_1_1.csproj" Id="3e4980b0-4edc-4740-a482-a03d236d7fd9" />
+  <Project Path="Zadanie04_1_2/Zadanie04_1_2.csproj" Id="b6e633de-7b8e-4023-80a5-17417c4d57e7" />
+  <Project Path="Zadanie04_1_3/Zadanie04_1_3.csproj" Id="a3c06a7c-a420-4cd7-8cd1-f410bba88c7d" />
+  <Project Path="Zadanie04_1_3_klient/Zadanie04_1_3_klient.csproj" Id="34bdb706-f215-4ac9-b4e1-49c3b05354ab" />
+</Solution>
