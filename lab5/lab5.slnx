@@ -1,5 +1,8 @@
 <Solution>
   <Project Path="Zadanie_01/Zadanie_01.fsproj" />
+  <Project Path="Zadanie_02/Zadanie_02.fsproj"/>
   <Project Path="Zadanie_03/Zadanie_03.fsproj" />
+  <Project Path="Zadanie_04/Zadanie_04.fsproj"/>
   <Project Path="Zadanie_05/Zadanie_05.fsproj" />
+  <Project Path="Zadanie_06/Zadanie_06.fsproj"/>
 </Solution>
