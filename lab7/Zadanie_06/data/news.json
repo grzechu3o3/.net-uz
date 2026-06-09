@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 2,
+    "Title": "haslo admin123",
+    "Content": "admin123",
+    "CreatedAt": "2026-06-09T22:16:58.361751+02:00"
+  },
+  {
+    "Id": 1,
+    "Title": "wiadomosc testowa",
+    "Content": "test test",
+    "CreatedAt": "2026-06-09T22:16:31.58423+02:00"
+  }
+]

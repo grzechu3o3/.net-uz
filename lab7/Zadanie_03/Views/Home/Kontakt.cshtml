@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "O mnie i Kontakt";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            
+            <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" alt="Autor bloga" class="rounded-circle mb-4 shadow" style="width: 150px; height: 150px; object-fit: cover;">
+            
+            <h1 class="mb-3">Kim jestem?</h1>
+            <p class="lead text-muted mb-5">
+                Cześć! Od 10 lat jestem aktywnym strzelcem sportowym i instruktorem. Założyłem tego bloga, aby dzielić się wiedzą i zarazić pasją do strzelectwa nowe osoby.
+            </p>
+
+            <div class="card shadow-sm text-start">
+                <div class="card-body p-4">
+                    <h3 class="card-title mb-4">Masz pytanie? Napisz!</h3>
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Twój adres e-mail</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="np. jan@kowalski.pl">
+                        </div>
+                        <div class="mb-3">
+                            <label for="messageText" class="form-label">Wiadomość</label>
+                            <textarea class="form-control" id="messageText" rows="4" placeholder="O co chciałbyś zapytać?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-dark w-100">Wyślij wiadomość</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

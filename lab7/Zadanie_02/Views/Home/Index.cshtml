@@ -1,0 +1,96 @@
+﻿@{
+ViewData["Title"] = "Pogodynka";
+}
+
+<div class="text-center mt-5">
+    <h2 class="display-6">Pogoda 🌤️</h2>
+
+    <div class="input-group mb-3 mt-4" style="max-width: 500px; margin: 0 auto;">
+        <input type="text" id="cityInput" class="form-control" placeholder="Wpisz miasto (np. Berlin)">
+        <button class="btn btn-primary" onclick="getWeather()">Szukaj</button>
+    </div>
+
+    <div id="result" class="mt-4 p-4 bg-light rounded shadow-sm" style="max-width: 600px; margin: 0 auto; display: none;">
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    document.getElementById("cityInput").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            getWeather();
+        }
+    });
+
+    async function getWeather() {
+        const city = document.getElementById("cityInput").value;
+        const resultDiv = document.getElementById("result");
+
+        if (!city) {
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = "<p class='text-danger mb-0'>Wpisz nazwę miasta!</p>";
+            return;
+        }
+
+        resultDiv.style.display = "block";
+        resultDiv.innerHTML = "<div class='spinner-border text-primary' role='status'></div><p class='mt-2'>Szukam...</p>";
+
+        try {
+            const response = await fetch(`/api/weather/${city}`);
+
+            if (!response.ok) {
+                if (response.status === 404) {
+                    throw new Error("Nie znaleziono takiego miasta.");
+                }
+                throw new Error("Błąd serwera. Spróbuj ponownie później.");
+            }
+
+            const data = await response.json();
+
+            const temp = Math.round(data.main.temp);
+            const feelsLike = Math.round(data.main.feels_like);
+            const humidity = data.main.humidity;
+            const pressure = data.main.pressure;
+            const windSpeed = data.wind.speed;
+            const description = data.weather[0].description;
+
+            const iconCode = data.weather[0].icon;
+            const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@@2x.png`;
+            
+            resultDiv.innerHTML = `
+                    <div class="d-flex justify-content-center align-items-center mb-2">
+                        <h3 class="mb-0 me-2">📍 ${data.name}</h3>
+                        <img src="${iconUrl}" alt="Ikona pogody" width="60" height="60">
+                    </div>
+                    <h1 class="display-3 fw-bold text-primary">${temp}°C</h1>
+                    <p class="text-muted text-capitalize fs-5">${description}</p>
+                    
+                    <hr class="my-4">
+                    
+                    <div class="row text-center">
+                        <div class="col-6 col-sm-3 mb-3">
+                            <div class="text-muted small">Odczuwalna</div>
+                            <div class="fs-5 fw-semibold">${feelsLike}°C</div>
+                        </div>
+                        <div class="col-6 col-sm-3 mb-3">
+                            <div class="text-muted small">Wiatr</div>
+                            <div class="fs-5 fw-semibold">${windSpeed} m/s</div>
+                        </div>
+                        <div class="col-6 col-sm-3 mb-3">
+                            <div class="text-muted small">Wilgotność</div>
+                            <div class="fs-5 fw-semibold">${humidity}%</div>
+                        </div>
+                        <div class="col-6 col-sm-3 mb-3">
+                            <div class="text-muted small">Ciśnienie</div>
+                            <div class="fs-5 fw-semibold">${pressure} hPa</div>
+                        </div>
+                    </div>
+                `;
+
+        } catch (error) {
+            resultDiv.innerHTML = `<p class='text-danger mb-0'>${error.message}</p>`;
+        }
+    }
+</script>
+}

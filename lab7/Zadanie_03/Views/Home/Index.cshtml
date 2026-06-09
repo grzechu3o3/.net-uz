@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Strona Główna";
+}
+
+<div class="p-5 mb-4 bg-dark text-white rounded-3 shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1595590424283-b8f17842773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; position: relative;">
+    
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); border-radius: inherit;"></div>
+    
+    <div class="container-fluid py-5 position-relative z-1">
+        <h1 class="display-4 fw-bold">Magazyn Strzelca</h1>
+        <p class="col-md-8 fs-4">Wszystko o broni palnej, strzelectwie sportowym i sprzęcie taktycznym. Recenzje, poradniki i nowości ze świata militariów.</p>
+        <a href="/Home/Artykul" class="btn btn-warning btn-lg fw-bold" type="button">Czytaj Najnowsze Wpisy</a>
+    </div>
+</div>
+
+<div class="row align-items-md-stretch mb-4">
+    <div class="col-md-6">
+        <div class="h-100 p-5 bg-light border rounded-3 shadow-sm">
+            <h2>Podstawy dla początkujących</h2>
+            <p>Dopiero zaczynasz swoją przygodę ze strzelectwem? Zobacz nasz poradnik, jak wybrać swoją pierwszą broń i wyrobić pozwolenie.</p>
+            <a href="/Home/Poradnik" class="btn btn-outline-secondary">Zobacz Poradniki</a>
+        </div>
+    </div>
+    <div class="col-md-6 mt-4 mt-md-0">
+        <div class="h-100 p-5 bg-light border rounded-3 shadow-sm">
+            <h2>Recenzje Sprzętu</h2>
+            <p>Testujemy najnowsze pistolety, karabinki i akcesoria. Szczere opinie z testów na strzelnicy.</p>
+            <a href="/Home/Artykul" class="btn btn-outline-secondary">Przejdź do Recenzji</a>
+        </div>
+    </div>
+</div>

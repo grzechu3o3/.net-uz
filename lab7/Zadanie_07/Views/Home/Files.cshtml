@@ -1,0 +1,69 @@
+@model List<FileInfo>
+
+@{
+    ViewData["Title"] = "Wgrane pliki";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>📂 Wgrane pliki</h2>
+        <a asp-action="Index" class="btn btn-primary">⬆️ Wgraj nowy</a>
+    </div>
+    <hr />
+
+    @if (!Model.Any())
+    {
+        <p class="text-muted">Brak wgranych plików.</p>
+    }
+    else
+    {
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Nazwa pliku</th>
+                    <th>Rozmiar</th>
+                    <th>Data wgrania</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var file in Model)
+                {
+                    <tr>
+                        <td>📄 @file.Name</td>
+                        <td>@FormatSize(file.Length)</td>
+                        <td>@file.CreationTime.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>
+                            <a href="/uploads/@file.Name" 
+                               download="@file.Name"
+                               class="btn btn-sm btn-outline-primary me-1">
+                                ⬇️ Pobierz
+                            </a>
+
+                            <form asp-action="DeleteFile" method="post" class="d-inline"
+                                  onsubmit="return confirm('Usunąć @file.Name?')">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="fileName" value="@file.Name" />
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    🗑️ Usuń
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <p class="text-muted mt-2">Łącznie: @Model.Count plik(ów)</p>
+    }
+</div>
+
+@functions {
+    string FormatSize(long bytes)
+    {
+        if (bytes < 1024) return $"{bytes} B";
+        if (bytes < 1048576) return $"{bytes / 1024.0:F1} KB";
+        if (bytes < 1073741824) return $"{bytes / 1048576.0:F1} MB";
+        return $"{bytes / 1073741824.0:F1} GB";
+    }
+}

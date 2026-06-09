@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    
+    var random = new Random();
+    
+    var number = random.Next(1, 101);
+}
+<div class="d-flex flex-column justify-content-center align-items-center text-center" style="min-height: 80vh;">
+    
+    <h1 class="display-4 mb-4">Liczby pseudolosowe</h1>
+    <form method="get">
+        <button type="button" onclick="getRandomNumber()" class="btn btn-primary btn-lg">Generuj Liczbę</button>
+    </form>
+    
+    <div class="mb-4">
+        <h1 id="number" class="display-1 fw-bold text-primary">@number</h1>
+    </div>
+</div>
+
+<script>
+    function getRandomNumber() {
+        document.getElementById('number').innerText = Math.floor(Math.random() * 100) + 1;
+    }
+</script>

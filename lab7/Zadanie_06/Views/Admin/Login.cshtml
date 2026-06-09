@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Logowanie admina";
+}
+
+<div class="container mt-5" style="max-width: 400px;">
+    <h3>Panel administratora</h3>
+    <hr />
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            <label class="form-label">Hasło</label>
+            <input type="password" name="password" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Zaloguj</button>
+    </form>
+</div>

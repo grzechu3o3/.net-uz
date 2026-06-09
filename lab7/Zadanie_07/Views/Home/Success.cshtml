@@ -1,0 +1,26 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "Wgrano pliki";
+}
+
+<div class="container mt-5" style="max-width: 600px;">
+    <div class="alert alert-success">
+        <h4>Wgrano @Model.Count plik(ów)!</h4>
+    </div>
+
+    <ul class="list-group mb-4">
+        @foreach (var fileName in Model)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>📄 @fileName</span>
+                <a href="/uploads/@fileName" target="_blank" class="btn btn-sm btn-outline-primary">
+                    Pobierz
+                </a>
+            </li>
+        }
+    </ul>
+
+    <a asp-action="Index" class="btn btn-secondary">⬅️ Wgraj kolejne</a>
+    <a asp-action="Files" class="btn btn-outline-secondary ms-2">📂 Wszystkie pliki</a>
+</div>

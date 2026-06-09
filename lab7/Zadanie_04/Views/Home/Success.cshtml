@@ -1,0 +1,15 @@
+@model Zadanie_04.Models.UserFormModel
+
+@{
+    ViewData["Title"] = "Sukces";
+}
+
+<div class="container mt-4">
+    <div class="alert alert-success">
+        <h4>✅ Dane są poprawne!</h4>
+        <p>Witaj, <strong>@Model.FirstName @Model.LastName</strong>!</p>
+        <p>Email: @Model.Email</p>
+        <p>Wiek: @Model.Age</p>
+    </div>
+    <a asp-action="Index" class="btn btn-secondary">Wróć do formularza</a>
+</div>
