@@ -1,0 +1,46 @@
+﻿@model Zadanie_05.Models.Kalkulator
+
+@{
+    ViewData["Title"] = "Kalkulator ASP.NET";
+}
+
+<div class="text-center mt-5">
+    <h2>Prosty Kalkulator</h2>
+    
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+            <form asp-action="Index" method="post" class="card p-4 shadow">
+                
+                <div class="form-group mb-3">
+                    <label asp-for="Liczba1">Pierwsza liczba:</label>
+                    <input asp-for="Liczba1" class="form-control" type="number" step="any" required />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Operacja">Działanie:</label>
+                    <select asp-for="Operacja" class="form-select">
+                        <option value="+">Dodawanie (+)</option>
+                        <option value="-">Odejmowanie (-)</option>
+                        <option value="*">Mnożenie (*)</option>
+                        <option value="/">Dzielenie (/)</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Liczba2">Druga liczba:</label>
+                    <input asp-for="Liczba2" class="form-control" type="number" step="any" required />
+                    <span asp-validation-for="Liczba2" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Oblicz</button>
+            </form>
+        </div>
+    </div>
+
+    @if (Model.Wynik.HasValue)
+    {
+        <div class="alert alert-success mt-4">
+            <h4>Wynik: @Model.Wynik</h4>
+        </div>
+    }
+</div>
